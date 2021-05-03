@@ -1,0 +1,57 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+  web:
+    image: ${DOCKER_REGISTRY-}retroggnet
+    build:
+      context: .
+      dockerfile: RetroGG.net/Dockerfile
+    depends_on:
+      - db
+    networks:
+      - backend
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./proxy.conf:/etc/nginx/proxy.conf
+      - ./mime.types:/etc/nginx/mime.types
+      - ./certs/:/certs/
+      - ./RetroGG.net/wwwroot/:/static/
+    ports:
+      - "443:443"
+    depends_on:
+      - web
+    networks:
+      backend:
+      frontend:
+        aliases:
+          - retrogg.trudev.tech
+  cloudflared:
+    image: cloudflare/cloudflared:2021.4.0
+    volumes:
+      - ./cloudflared:/etc/cloudflared
+    depends_on:
+      - nginx
+    networks:
+      - frontend
+    command: tunnel run
+
+volumes:
+  pgdata:
+
+networks:
+  backend:
+  frontend:

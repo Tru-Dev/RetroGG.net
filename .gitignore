@@ -361,3 +361,13 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+/RetroGG.net/.yarn
+/RetroGG.net/bs-theming/bs-scss/**
+!/RetroGG.net/bs-theming/bs-scss/.gitkeep
+
+.env
+/certs/**
+!/certs/.gitkeep
+/cloudflared/**
+!/cloudflared/.gitkeep

@@ -1,37 +1,74 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">RetroGG.net</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+﻿<div class="container-fluid ps-4">
+    <a class="navbar-brand align-middle font-display" href="/"><img src="img/logo.png" width="48" height="48" class="d-inline-block align-middle pe-1" />RetroGG.net</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+    <div class="collapse navbar-collapse" id="navbar-content">
+        <nav class="navbar-nav navbar-nav-scroll">
+            <ul class="navbar-nav flex-md-row list-group-horizontal-md">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link text-center" href="" Match="NavLinkMatch.All">
+                        <svg class="bi" width="32" height="32" fill="currentColor">
+                            <use xlink:href="bootstrap-icons.svg#house" />
+                        </svg> <br /> Home
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link text-center" href="counter">
+                        <svg class="bi" width="32" height="32" fill="currentColor">
+                            <use xlink:href="bootstrap-icons.svg#plus" />
+                        </svg> <br /> Counter
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link text-center" href="fetchdata">
+                        <svg class="bi" width="32" height="32" fill="currentColor">
+                            <use xlink:href="bootstrap-icons.svg#table" />
+                        </svg> <br /> Fetch data
+                    </NavLink>
+                </li>
+            </ul>
+            <hr width="2" size="48" class="d-none d-md-inline-block bg-light" />
+            <hr class="d-block d-md-none bg-light" style="min-height: 2px;"/>
+            <ul class="navbar-nav flex-md-row list-group-horizontal-md">
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item px-3">
+                            <NavLink class="nav-link text-center" href="Identity/Account/Manage">
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                    <use xlink:href="bootstrap-icons.svg#person" />
+                                </svg> <br /> Account
+                            </NavLink>
+                        </li>
+                        <li class="nav-item px-3">
+                            <form method="post" action="Identity/Account/LogOut">
+                                <button type="submit" class="nav-link btn btn-link text-center">
+                                    <svg class="bi" width="32" height="32" fill="currentColor">
+                                        <use xlink:href="bootstrap-icons.svg#box-arrow-left" />
+                                    </svg> <br /> Log out
+                                </button>
+                            </form>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        <li class="nav-item px-3">
+                            <NavLink class="nav-link text-center" href="Identity/Account/Register">
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                    <use xlink:href="bootstrap-icons.svg#pencil-square" />
+                                </svg> <br /> Register
+                            </NavLink>
+                        </li>
+                        <li class="nav-item px-3">
+                            <NavLink class="nav-link text-center" href="Identity/Account/Login">
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                    <use xlink:href="bootstrap-icons.svg#box-arrow-in-right" />
+                                </svg> <br /> Login
+                            </NavLink>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </ul>
+        </nav>
+    </div>
 </div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </li>
-    </ul>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
