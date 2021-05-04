@@ -37,17 +37,6 @@ services:
     networks:
       - backend
       - frontend
-  cloudflared:
-    image: cloudflare/cloudflared:2021.4.0
-    volumes:
-      - ./cloudflared:/etc/cloudflared
-    depends_on:
-      - nginx
-    networks:
-      - frontend
-    command: tunnel run
-    ports:
-      - "38531:38531"
 
 volumes:
   pgdata:

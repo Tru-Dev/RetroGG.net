@@ -1,4 +1,4 @@
-# RetroGG.net
+# RetroGG.net - No Extras
 Example retro game store site written for a class, in ASP.NET Core
 
 ## Technologies Used
@@ -9,8 +9,8 @@ Example retro game store site written for a class, in ASP.NET Core
 * Docker
   * Docker Compose
 * PostgreSQL (Through Docker)
-* SendGrid
-* Cloudflare
+* SendGrid (switch to release or master)
+* Cloudflare (switch to release or master)
   * Argo Tunnels
 * Node.js
   * Bootstrap 5 Beta (including Icons v1.4)
@@ -21,7 +21,7 @@ Example retro game store site written for a class, in ASP.NET Core
 > * Docker
 > 
 > Requirements for Extra Features:
->> Switch to no-extras branch if you do not want or have access to these features.
+>> Switch to release or master to get these features.
 > * SendGrid Account (for emailing capabilities)
 > * Cloudflare Account (for Argo Tunnel and domain linking)
 > 
@@ -32,56 +32,8 @@ Example retro game store site written for a class, in ASP.NET Core
 > * Git
 > * pgAdmin
 1. Clone the repo with your preferred method.
-2. Add these [user secrets](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets): 
-    ```json
-    // in secrets.json through Visual Studio...
-    {
-        "SendGridUser": "<your username here>",
-        "SendGridKey": "<your api key here>",
-        "SendGridDomain": "@<your domain here>"
-    }
-    ```
-    ```bash
-    # ...or on the command line for other IDEs
-    # make sure to be in the project folder (inner "RetroGG.net" folder)
-    dotnet user-secrets init # init the user secrets
-    dotnet user-secrets set "SendGridUser" "<your username here>"
-    dotnet user-secrets set "SendGridKey" "<your api key here>"
-    dotnet user-secrets set "SendGridDomain" "@<your domain here>"
-    ```
-3. Add your Cloudflare Argo Tunnel certificate and config into the `cloudflared` folder.
-4. Add a certificate and key for your origin and root CA in `certs`.  
-   * They can be selfsigned.
-   * Make sure to put the root CA cert in `cloudflared` as well.
-   * You can use [this tool](https://certificatetools.com/) to generate the certs.
-     * Generate the CA with the default CA settings, make sure to set your domain and DNS to localhost or your
-       domain name if you have one. Change the default duration if necessary.
-     * When you export the root CA make sure to mark it as persistent in addition to downloading its cert.
-     * Now configure the web server certificate using the web server template, make sure to set common names
-       and subject alternate names to nginx, localhost, and your domain if you have one.
-     * In the CSR options, instead of CSR Only choose the domain you created the root CA under. Finally,
-       generate the certificate.
-> Here's an example project structure with the files introduced:
-> ```
-> RetroGG.net
-> |   LICENSE
-> |   README.md
-> |   RetroGG.net.sln
-> |   ...
-> |
-> +---certs
-> |       retrogg.crt
-> |       retrogg.key
-> |       RootCert.crt
-> |
-> +---cloudflared
-> |       cert.pem
-> |       config.yml
-> |       RootCert.crt
-> |
-> \---RetroGG.net
->         ...
-> ```
+2. For SSL support, add a certificate and key for your origin in `certs`.  
+   They can be selfsigned.
 If you use Visual Studio, you're done! You can hit the run button and it should work!  
 Otherwise, if you're using Visual Studio Code, follow
 [this tutorial](https://www.syncfusion.com/blogs/post/how-to-develop-an-asp-net-core-application-using-visual-studio-code.aspx)

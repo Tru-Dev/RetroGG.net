@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RetroGG.net.Areas.Identity;
 using RetroGG.net.Data;
-using RetroGG.net.Services;
+//using RetroGG.net.Services;
 
 namespace RetroGG.net
 {
@@ -35,8 +35,8 @@ namespace RetroGG.net
                     Configuration.GetConnectionString("PGSQL")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddTransient<IEmailSender, SendGridWebEmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
+            //services.AddTransient<IEmailSender, SendGridWebEmailSender>();
+            //services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
