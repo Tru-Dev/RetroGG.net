@@ -370,4 +370,4 @@ FodyWeavers.xsd
 /certs/**
 !/certs/.gitkeep
 /cloudflared/**
-!/cloudflared/.gitkeep
+!/cloudflared/config.yml

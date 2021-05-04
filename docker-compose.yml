@@ -35,10 +35,8 @@ services:
     depends_on:
       - web
     networks:
-      backend:
-      frontend:
-        aliases:
-          - retrogg.trudev.tech
+      - backend
+      - frontend
   cloudflared:
     image: cloudflare/cloudflared:2021.4.0
     volumes:
@@ -48,6 +46,8 @@ services:
     networks:
       - frontend
     command: tunnel run
+    ports:
+      - "38531:38531"
 
 volumes:
   pgdata:
