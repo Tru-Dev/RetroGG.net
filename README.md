@@ -36,7 +36,7 @@ Example retro game store site written for a class, in ASP.NET Core
     ```json
     // in secrets.json through Visual Studio...
     {
-        "ConnectionStrings.PGSQL": "User ID=postgres;Password=<your password here>;Server=db;Port=5432;Database=retroggdotnet;Integrated Security=true;Pooling=true;"
+        "ConnectionStrings.PGSQL": "User ID=postgres;Password=<your password here>;Server=db;Port=5432;Database=retroggdotnet;Integrated Security=true;Pooling=true;",
         "SendGridUser": "<your username here>",
         "SendGridKey": "<your api key here>",
         "SendGridDomain": "@<your domain here>"
