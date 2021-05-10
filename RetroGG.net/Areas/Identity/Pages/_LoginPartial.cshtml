@@ -3,23 +3,34 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@{
+    void RenderIdentityNavLink(string href, string text, string icon)
+    {
+        <li class="nav-item px-3">
+            <a class="nav-link text-center @(Context.Request.Path == href ? "active" : "")" href="@href">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="/static/bootstrap-icons.svg#@icon" />
+                </svg> <br /> @text
+            </a>
+        </li>
+    }
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
-            </li>
-        </ul>
-    </form>
+    RenderIdentityNavLink("/Identity/Account/Manage", "Account", "person");
+    <li class="nav-item px-3">
+        <form method="post" action="Identity/Account/LogOut">
+            <button type="submit" class="nav-link btn btn-link text-center">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="/static/bootstrap-icons.svg#box-arrow-left" />
+                </svg> <br /> Log out
+            </button>
+        </form>
+    </li>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    </ul>
+    RenderIdentityNavLink("/Identity/Account/Register", "Register", "pencil-square");
+    RenderIdentityNavLink("/Identity/Account/Login", "Login", "box-arrow-in-right");
 }
