@@ -8,49 +8,71 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RetroGG.net</title>
-    <link rel="stylesheet" href="~/css/retrogg-bs/retrogg.css" />
+    <link rel="stylesheet" href="/static/css/retrogg-bs/retrogg.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" href="~/">RetroGG.net</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3">
+            <div class="container-md">
+                <a class="navbar-brand align-middle font-display" href="/"><img src="/static/img/logo.png" width="48" height="48" class="d-inline-block align-middle pe-1" />RetroGG.net</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    @{
-                        var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
-                    }
-                    @if (result.Success)
-                    {
-                        await Html.RenderPartialAsync("_LoginPartial");
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("The default Identity UI layout requires a partial view '_LoginPartial' " +
-                            "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
-                            $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}.");
-                    }
+                <div class="collapse navbar-collapse" id="navbar-content">
+                    <ul class="navbar-nav flex-md-row list-group-horizontal-md">
+                        <li class="nav-item px-3">
+                            <a class="nav-link text-center" href="/">
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                    <use xlink:href="/static/bootstrap-icons.svg#house" />
+                                </svg> <br /> Home
+                            </a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link text-center" href="/counter">
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                    <use xlink:href="/static/bootstrap-icons.svg#plus" />
+                                </svg> <br /> Counter
+                            </a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a class="nav-link text-center" href="/fetchdata">
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                    <use xlink:href="/static/bootstrap-icons.svg#table" />
+                                </svg> <br /> Fetch data
+                            </a>
+                        </li>
+                    </ul>
+                    <hr width="2" size="48" class="d-none d-md-inline-block bg-light" />
+                    <hr class="d-block d-md-none bg-light" style="min-height: 2px;" />
+                    <ul class="navbar-nav flex-md-row list-group-horizontal-md">
+                        @{
+                            var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: false);
+                        }
+                        @if (result.Success)
+                        {
+                            await Html.RenderPartialAsync("_LoginPartial");
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException("The default Identity UI layout requires a partial view '_LoginPartial' " +
+                                "usually located at '/Pages/_LoginPartial' or at '/Views/Shared/_LoginPartial' to work. Based on your configuration " +
+                                $"we have looked at it in the following locations: {System.Environment.NewLine}{string.Join(System.Environment.NewLine, result.SearchedLocations)}.");
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="footer border-top text-muted">
-        <div class="container">
-            &copy; 2021 - RetroGG.net - <a asp-area="" asp-page="Privacy">Privacy</a>
-        </div>
+    <main class="pb-3">
+        <div class="container-md">@RenderBody()</div>
+    </main>
+    <footer class="footer border-top border-secondary text-black-50 container-md pt-3 mt-3">
+        RetroGG.net &copy; 2021 Jesus Trujillo - <a class="link-dark" asp-area="" asp-page="Privacy">Privacy</a>
     </footer>
-    <script src="~/Identity/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Identity/js/site.js" asp-append-version="true"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
