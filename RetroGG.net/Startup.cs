@@ -59,7 +59,6 @@ namespace RetroGG.net
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 

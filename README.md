@@ -36,6 +36,7 @@ Example retro game store site written for a class, in ASP.NET Core
     ```json
     // in secrets.json through Visual Studio...
     {
+        "ConnectionStrings.PGSQL": "User ID=postgres;Password=<your password here>;Server=db;Port=5432;Database=retroggdotnet;Integrated Security=true;Pooling=true;",
         "SendGridUser": "<your username here>",
         "SendGridKey": "<your api key here>",
         "SendGridDomain": "@<your domain here>"
@@ -45,12 +46,14 @@ Example retro game store site written for a class, in ASP.NET Core
     # ...or on the command line for other IDEs
     # make sure to be in the project folder (inner "RetroGG.net" folder)
     dotnet user-secrets init # init the user secrets
+    dotnet user-secrets set "ConnectionStrings.PGSQL" "User ID=postgres;Password=<your password here>;Server=db;Port=5432;Database=retroggdotnet;Integrated Security=true;Pooling=true;"
     dotnet user-secrets set "SendGridUser" "<your username here>"
     dotnet user-secrets set "SendGridKey" "<your api key here>"
     dotnet user-secrets set "SendGridDomain" "@<your domain here>"
     ```
-3. Add your Cloudflare Argo Tunnel certificate and config into the `cloudflared` folder.
-4. Add a certificate and key for your origin and root CA in `certs`.  
+3. Add a `.env` file to the base `RetroGG.net` directory and set `POSTGRES_PASSWORD="<your password here>"`
+4. Add your Cloudflare Argo Tunnel certificate and config into the `cloudflared` folder.
+5. Add a certificate and key for your origin and root CA in `certs`.  
    * They can be selfsigned.
    * Make sure to put the root CA cert in `cloudflared` as well.
    * You can use [this tool](https://certificatetools.com/) to generate the certs.

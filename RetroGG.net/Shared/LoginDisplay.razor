@@ -1,12 +1,36 @@
 ﻿<AuthorizeView>
     <Authorized>
-        <a href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a>
-        <form method="post" action="Identity/Account/LogOut">
-            <button type="submit" class="nav-link btn btn-link">Log out</button>
-        </form>
+        <li class="nav-item px-3">
+            <a class="nav-link text-center" href="Identity/Account/Manage">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="/static/bootstrap-icons.svg#person" />
+                </svg> <br /> Account
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <form method="post" action="Identity/Account/LogOut">
+                <button type="submit" class="nav-link btn btn-link text-center">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="/static/bootstrap-icons.svg#box-arrow-left" />
+                    </svg> <br /> Log out
+                </button>
+            </form>
+        </li>
     </Authorized>
     <NotAuthorized>
-        <a href="Identity/Account/Register">Register</a>
-        <a href="Identity/Account/Login">Log in</a>
+        <li class="nav-item px-3">
+            <a class="nav-link text-center" href="Identity/Account/Register">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="/static/bootstrap-icons.svg#pencil-square" />
+                </svg> <br /> Register
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link text-center" href="Identity/Account/Login">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="/static/bootstrap-icons.svg#box-arrow-in-right" />
+                </svg> <br /> Login
+            </a>
+        </li>
     </NotAuthorized>
 </AuthorizeView>
