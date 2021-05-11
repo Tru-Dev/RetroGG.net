@@ -7,17 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RetroGG.net.Models
 {
-    public class Product
+    public class StoredImage
     {
         [Key]
-        public Guid ProductID { get; set; }
+        public Guid ImageID { get; set; }
 
         [MaxLength(32)]
         public string Name { get; set; }
 
-        [MaxLength(512)]
-        public string Description { get; set; }
-
-        public StoredImage Image { get; set; }
+        [MaxLength(1024 ^ 2)]
+        public byte[] ImageData { get; set; }
     }
 }
