@@ -258,6 +258,8 @@ namespace RetroGG.net.Data.Migrations
                     b.HasKey("ImageID");
 
                     b.ToTable("StoredImages");
+
+                    b.HasCheckConstraint("CHK_StoredImages_ImageData", "length(\"ImageData\") <= 1048576");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

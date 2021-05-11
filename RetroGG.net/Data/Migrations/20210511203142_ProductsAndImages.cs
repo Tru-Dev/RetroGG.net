@@ -18,6 +18,7 @@ namespace RetroGG.net.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StoredImages", x => x.ImageID);
+                    table.CheckConstraint("CHK_StoredImages_ImageData", "length(\"ImageData\") <= 1048576");
                 });
 
             migrationBuilder.CreateTable(
