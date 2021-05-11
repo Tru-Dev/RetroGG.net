@@ -15,7 +15,7 @@ namespace RetroGG.net.Models
         [MaxLength(32)]
         public string Name { get; set; }
 
-        [MaxLength(1024 ^ 2)]
+        [MaxLength(1 << 20)] // == 1 MiB
         public byte[] ImageData { get; set; }
     }
 }
