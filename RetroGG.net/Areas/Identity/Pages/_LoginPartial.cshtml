@@ -8,7 +8,7 @@
     {
         <li class="nav-item px-3">
             <a class="nav-link text-center @(Context.Request.Path == href ? "active" : "")" href="@href">
-                <svg class="bi" width="32" height="32" fill="currentColor">
+                <svg class="bi mx-3" width="32" height="32" fill="currentColor">
                     <use xlink:href="/static/bootstrap-icons.svg#@icon" />
                 </svg> <br /> @text
             </a>
@@ -22,7 +22,7 @@
     <li class="nav-item px-3">
         <form method="post" action="Identity/Account/LogOut">
             <button type="submit" class="nav-link btn btn-link text-center">
-                <svg class="bi" width="32" height="32" fill="currentColor">
+                <svg class="bi mx-3" width="32" height="32" fill="currentColor">
                     <use xlink:href="/static/bootstrap-icons.svg#box-arrow-left" />
                 </svg> <br /> Log out
             </button>
