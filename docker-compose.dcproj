@@ -17,5 +17,16 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="static\bootstrap-icons.svg" />
+    <None Include="static\css\retrogg-bs\retrogg.css" />
+    <None Include="static\css\site.css" />
+    <None Include="static\favicon.ico" />
+    <None Include="static\img\logo.png" />
+    <None Include="static\js\additional-methods.min.js" />
+    <None Include="static\js\bootstrap.bundle.min.js" />
+    <None Include="static\js\jquery.min.js" />
+    <None Include="static\js\jquery.validate.min.js" />
+    <None Include="static\js\jquery.validate.unobtrusive.min.js" />
+    <None Include="static\js\site.js" />
   </ItemGroup>
 </Project>
